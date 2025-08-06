@@ -1,0 +1,15 @@
+{
+  "name": "Guédelon",
+  "short_name": "Guédelon",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#3b2f1f",
+  "theme_color": "#8b5e3c",
+  "icons": [
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Gu%C3%A9delon_Logo.svg/512px-Gu%C3%A9delon_Logo.svg.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
