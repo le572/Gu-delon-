@@ -3,7 +3,7 @@
   "short_name": "Guédelon",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#3b2f1f",
+  "background_color": "#000000",
   "theme_color": "#8b5e3c",
   "icons": [
     {
