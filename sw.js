@@ -1,6 +1,6 @@
 self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open('guedelon-v5.1').then(function(cache) {
+    caches.open('guedelon-v5').then(function(cache) {
       return cache.addAll(['index.html', 'manifest.json']);
     })
   );
