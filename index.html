@@ -1,97 +1,85 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Guédelon v5.1 – Connexion</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8" />
+  <title>Guédelon v5.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="manifest.json" />
   <style>
     body {
-      font-family: Georgia, serif;
-      background: linear-gradient(#3b2f1f, #8b5e3c);
+      font-family: 'Georgia', serif;
+      background: url('https://i.imgur.com/1GHLF8e.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
-      text-align: center;
-      padding: 40px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
     .menu {
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.7);
       padding: 30px;
       max-width: 500px;
-      margin: auto;
+      margin: 100px auto;
+      border-radius: 20px;
+      text-align: center;
     }
-    input, button {
+    .menu h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .menu button {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 15px;
       font-size: 18px;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 8px;
+      background: #8b5e3c;
       border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
     }
-    input { width: 80%; }
-    button { background: #5a3921; color: white; cursor: pointer; }
-    .hidden { display: none; }
+    .menu button:focus {
+      outline: 3px solid gold;
+    }
   </style>
   <script>
-    let generatedCode = "";
-
-    function generateCode() {
-      generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
-      alert("Code envoyé par mail : " + generatedCode); // Simulé
-      document.getElementById("step1").classList.add("hidden");
-      document.getElementById("step2").classList.remove("hidden");
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
     }
 
-    function verifyCode() {
-      const inputCode = document.getElementById("codeInput").value;
-      if (inputCode === generatedCode) {
-        localStorage.setItem("guedelon_connected", "true");
-        alert("Connexion réussie !");
-        showMenu();
-      } else {
-        alert("Code incorrect.");
+    function jouer() {
+      alert("Sélection du mode Bac à sable / Survie à implémenter...");
+    }
+
+    function maj() {
+      alert("Affichage de la liste des mises à jour à venir...");
+    }
+
+    function settings() {
+      alert("Paramètres (volume, langue, mode console...) à venir !");
+    }
+
+    document.addEventListener('keydown', function(e) {
+      const buttons = document.querySelectorAll('button');
+      let index = Array.from(buttons).findIndex(btn => btn === document.activeElement);
+      if (e.key === 'ArrowDown') {
+        index = (index + 1) % buttons.length;
+        buttons[index].focus();
       }
-    }
-
-    function showMenu() {
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("mainMenu").classList.remove("hidden");
-    }
-
-    function logout() {
-      localStorage.removeItem("guedelon_connected");
-      location.reload();
-    }
-
-    window.onload = () => {
-      if (localStorage.getItem("guedelon_connected") === "true") {
-        showMenu();
+      if (e.key === 'ArrowUp') {
+        index = (index - 1 + buttons.length) % buttons.length;
+        buttons[index].focus();
       }
-    };
+    });
   </script>
 </head>
 <body>
-  <div class="menu" id="login">
-    <h1>🏰 Guédelon – Connexion</h1>
-    <div id="step1">
-      <p>Entrez votre adresse mail :</p>
-      <input type="email" placeholder="adresse@mail.com" required>
-      <br>
-      <button onclick="generateCode()">Recevoir un code</button>
-    </div>
-    <div id="step2" class="hidden">
-      <p>Entrez le code reçu :</p>
-      <input id="codeInput" type="text" maxlength="6" placeholder="123456">
-      <br>
-      <button onclick="verifyCode()">Valider</button>
-    </div>
-  </div>
-
-  <div class="menu hidden" id="mainMenu">
-    <h1>Bienvenue sur Guédelon</h1>
-    <button onclick="alert('Lancement du jeu…')">▶️ Jouer</button>
-    <button onclick="alert('Afficher les mises à jour')">📜 Mises à jour</button>
-    <button onclick="alert('Paramètres à venir')">⚙️ Paramètres</button>
-    <button onclick="logout()">🚪 Déconnexion</button>
+  <div class="menu">
+    <h1>🏰 Guédelon v5.0</h1>
+    <button onclick="jouer()">▶️ Jouer</button>
+    <button onclick="maj()">📜 Mises à jour</button>
+    <button onclick="settings()">⚙️ Paramètres</button>
   </div>
 </body>
 </html>
